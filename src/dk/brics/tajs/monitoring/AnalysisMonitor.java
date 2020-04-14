@@ -1647,8 +1647,8 @@ public class AnalysisMonitor implements IAnalysisMonitoring {
                     if (!log.isDebugEnabled() && log.isInfoEnabled()) {
                         System.out.print("\r");
                     }
-                    log.warn("Likely significant loss of precision (mix of multiple native and non-native functions) at " +
-                            n.getClass().getSimpleName() + " " + n.getSourceLocation());
+//                    log.warn("Likely significant loss of precision (mix of multiple native and non-native functions) at " +
+//                            n.getClass().getSimpleName() + " " + n.getSourceLocation());
                     return;
                 }
             }

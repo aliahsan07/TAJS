@@ -142,7 +142,7 @@ public class Main {
         return ptrLinePairs;
     }
 
-    private static void pointsToAnalysis(Analysis analysis, String ptrSetFile) {
+    private static void pointsToAnalysis(Analysis analysis, String ptrSetFile, String srcFile) {
         List<Tuple<String, Integer>> tuples = constructPointerTuples(ptrSetFile);
         FlowGraph fg = analysis.getSolver().getFlowGraph();
         Collection<BasicBlock> blocks = fg.getMain().getBlocks();
@@ -162,7 +162,7 @@ public class Main {
                 String pointsToSet = typeInformation.get(tuples.get(i));
                 Integer lineNumber = tuples.get(i).lineNumber;
                 String var = tuples.get(i).variableName;
-                Triple<String, String, Integer> triple = new Triple<>("example.js", var, lineNumber);
+                Triple<String, String, Integer> triple = new Triple<>(srcFile, var, lineNumber);
                 if (pointsToSet == null){
 //                    System.out.println("Invalid combination of " + var + " " + lineNumber);
                     object.put(String.valueOf(triple), (Collection<?>) null);
@@ -564,7 +564,7 @@ public class Main {
         enterPhase(AnalysisPhase.SCAN, monitoring);
         analysis.getSolver().scan();
 
-        pointsToAnalysis(analysis, Options.get().getPtrSetFile());
+    pointsToAnalysis(analysis, Options.get().getPtrSetFile(), Options.get().getArguments().get(0).toString());
 
         // suppressing logs for piping
 //        leavePhase(AnalysisPhase.SCAN, monitoring);
