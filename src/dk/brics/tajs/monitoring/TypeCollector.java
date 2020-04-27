@@ -105,7 +105,7 @@ public class TypeCollector {
             value = Value.join(existing_value, value); // joining values to accommodate for multiple contexts or imprecise location information
         type_info_map.put(new_location, value);
 
-        if (source_location.getLocation().getAuthority() != null){
+        if (source_location.getLocation() != null && source_location.getLocation().getAuthority() != null){
             points_to_map.put(new Tuple<>(new_location.variable_name, new_location.getVariableLocation().getLineNumber()), value.representPointsToSet());
         }
 

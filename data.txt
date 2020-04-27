@@ -1,2 +1,1 @@
-temp 8
-inner 2
+a 1
